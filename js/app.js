@@ -2,7 +2,7 @@
    API BASE URL (CHANGE ONLY THIS FOR RENDER)
 ========================= */
 
-const API_URL = "https://dukaan-backend-u1zj.onrender.com/login";
+const API_URL = "https://dukaan-backend-u1zj.onrender.com/";
 // const API_URL = "https://your-render-app.onrender.com";
 
 /* =========================
