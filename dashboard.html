@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DukaanHisab</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="dashboard">
+      <aside class="sidebar">
+        <h2>🧾 DukaanHisab</h2>
+        <button onclick="toggleDark()">🌙 Dark Mode</button>
+        <button onclick="exportCSV()">⬇ Export</button>
+        <button onclick="logout()">🚪 Logout</button>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search customer..."
+            onkeyup="searchCustomer()"
+          />
+          <button class="primary-btn" onclick="openModal()">+ Add</button>
+        </div>
+
+        <div class="summary">
+          <div class="card">
+            <h4>Total Customers</h4>
+            <p id="totalCustomers">0</p>
+          </div>
+          <div class="card">
+            <h4>Total Balance</h4>
+            <p>₹ <span id="totalBalance">0</span></p>
+          </div>
+        </div>
+
+        <div class="table-box">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Father Name</th>
+                <th>Balance</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="customerTable"></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+
+    <!-- Add Modal -->
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <h3>Transaction</h3>
+        <input type="text" id="customerName" placeholder="Customer Name" />
+        <input type="text" id="fatherName" placeholder="Father Name" />
+        <input type="number" id="amount" placeholder="Amount" />
+        <select id="type">
+          <option value="udhaar">Udhaar</option>
+          <option value="payment">Payment</option>
+        </select>
+        <button onclick="saveTransaction()" class="primary-btn">Save</button>
+        <button onclick="closeModal()" class="primary-btn">Cancel</button>
+      </div>
+    </div>
+    <!-- Toast -->
+    <div id="toast"></div>
+    <script src="js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  </body>
+</html>

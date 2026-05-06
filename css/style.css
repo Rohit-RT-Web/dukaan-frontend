@@ -1,0 +1,316 @@
+/* =========================
+   DESIGN SYSTEM
+========================= */
+
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --radius: 16px;
+}
+
+body.dark {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --border: #334155;
+}
+
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s ease;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+  width: 250px;
+  background: linear-gradient(180deg, #0f172a, #111827);
+  color: white;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.sidebar button {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar button:hover {
+  background: var(--primary);
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+  flex: 1;
+  padding: 40px;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.topbar input {
+  width: 260px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  transition: 0.3s;
+}
+
+.topbar input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.primary-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.primary-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+/* =========================
+   SUMMARY CARDS
+========================= */
+
+.summary {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.card {
+  flex: 1;
+  background: var(--card);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h4 {
+  color: var(--muted);
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.card p {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-box {
+  background: var(--card);
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 14px;
+  font-size: 13px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+td {
+  padding: 16px 14px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+}
+
+tr {
+  transition: 0.2s;
+}
+
+tr:hover {
+  background: rgba(37, 99, 235, 0.05);
+}
+
+/* action buttons inside table */
+
+td button {
+  background: #e2e8f0;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin-right: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+body.dark td button {
+  background: #334155;
+  color: white;
+}
+
+td button:hover {
+  background: var(--primary);
+  color: white;
+}
+th:last-child,
+td:last-child {
+  text-align: center;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: var(--card);
+  padding: 30px;
+  border-radius: 20px;
+  width: 340px;
+  animation: pop 0.25s ease;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+}
+
+/* =========================
+   TOAST
+========================= */
+
+#toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: var(--primary);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 12px;
+  display: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes pop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+  .summary {
+    flex-direction: column;
+  }
+  .topbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

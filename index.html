@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Admin Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #2563eb, #1e3a8a);
+      }
+
+      .card {
+        width: 350px;
+        padding: 35px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(15px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        color: white;
+        text-align: center;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .card h2 {
+        margin-bottom: 5px;
+        font-size: 26px;
+      }
+
+      .card p {
+        font-size: 13px;
+        opacity: 0.8;
+        margin-bottom: 25px;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 12px;
+        outline: none;
+        font-size: 14px;
+      }
+
+      input:focus {
+        outline: 2px solid #60a5fa;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 12px;
+        background: #60a5fa;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #3b82f6;
+        transform: translateY(-2px);
+      }
+
+      .footer {
+        margin-top: 15px;
+        font-size: 12px;
+        opacity: 0.7;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 500px) {
+        .card {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="card">
+      <h2>🧾 Admin Login</h2>
+      <p>Welcome back, please login to continue</p>
+
+      <input type="text" id="username" placeholder="Username" />
+      <input type="password" id="password" placeholder="Password" />
+
+      <button onclick="login()">Login</button>
+
+      <div class="footer">DukaanHisab © 2026</div>
+    </div>
+
+    <script>
+      async function login() {
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        if (!username || !password) {
+          alert("Please fill all fields");
+          return;
+        }
+
+        try {
+          const res = await fetch("http://localhost:5000/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+          });
+
+          const data = await res.json();
+
+          if (res.ok) {
+            localStorage.setItem("isAdmin", "true");
+            window.location.href = "dashboard.html";
+          } else {
+            alert(data.message || "Invalid login");
+          }
+        } catch (err) {
+          alert("Server error");
+        }
+      }
+
+      if (localStorage.getItem("isAdmin") === "true") {
+        window.location.href = "dashboard.html";
+      }
+    </script>
+  </body>
+</html>
